@@ -22,6 +22,8 @@
       </div>
       <div class="header-right">
         <span id="timer" class="timer hidden">00:00</span>
+        <!-- 完成按钮放在header右侧，远离输入区 -->
+        <button id="stop-btn" class="stop-header-btn hidden">完成</button>
         <button id="menu-btn" class="icon-btn" aria-label="Menu">⋮</button>
       </div>
     </header>
@@ -47,24 +49,22 @@
         </div>
       </div>
 
-      <!-- Recording/Notes Screen -->
+      <!-- Recording/Notes Screen — 底部只有输入框+发送按钮，完成在顶部 -->
       <div id="notes-screen" class="screen">
         <div id="title-bar" class="title-bar">
           <span id="current-title" class="current-title"></span>
         </div>
         <div id="notes-container" class="notes-container">
           <div id="notes-entries" class="notes-entries">
-            <div id="empty-hint" class="empty-hint">在下方输入你的笔记要点...</div>
+            <div id="empty-hint" class="empty-hint">在下方输入笔记要点，按发送或回车提交...</div>
           </div>
+          <!-- 底部只有输入区，无完成按钮 -->
           <div class="input-row">
             <div class="input-group">
               <textarea id="note-input" class="note-input" placeholder="记一条笔记..." rows="1"></textarea>
               <button id="send-btn" class="send-btn" disabled>↑</button>
             </div>
           </div>
-        </div>
-        <div class="bottom-bar">
-          <button id="stop-btn" class="stop-btn">完成记录</button>
         </div>
       </div>
 
@@ -78,10 +78,10 @@
           </div>
           <div id="review-notes" class="review-notes"></div>
           <div class="review-actions">
-            <button id="export-btn" class="action-btn primary">导出ZIP</button>
+            <button id="export-btn" class="action-btn primary">导出 ZIP</button>
             <button id="new-btn" class="action-btn">新建记录</button>
           </div>
-          <p class="export-hint">导出包含：录音 + 笔记 + 分析指引，一个ZIP文件</p>
+          <p class="export-hint">ZIP包含：录音 + 笔记 + Claude分析指引</p>
         </div>
       </div>
 
