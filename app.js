@@ -34,7 +34,7 @@
     emptyHint: $('#empty-hint'),
     noteInput: $('#note-input'),
     sendBtn: $('#send-btn'),
-    stopBtn: $('#stop-btn'),
+    stopBtn: $('#stop-btn'),       // now in header
     reviewTitle: $('#review-title'),
     reviewDuration: $('#review-duration'),
     reviewCount: $('#review-count'),
@@ -199,8 +199,9 @@
         audio: { echoCancellation: true, noiseSuppression: true, sampleRate: 44100 }
       });
 
+      // Prefer mp4/aac for widest compatibility (opens on iPhone/Windows/Android)
       let mimeType = '';
-      for (const mt of ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4']) {
+      for (const mt of ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus']) {
         if (MediaRecorder.isTypeSupported(mt)) { mimeType = mt; break; }
       }
 
@@ -225,6 +226,7 @@
     timerInterval = setInterval(updateTimer, 1000);
     dom.statusDot.classList.remove('hidden');
     dom.timer.classList.remove('hidden');
+    dom.stopBtn.classList.remove('hidden');
     dom.currentTitle.textContent = currentSession.title;
     dom.notesEntries.innerHTML = '';
     dom.notesEntries.appendChild(dom.emptyHint);
@@ -247,6 +249,7 @@
     if (currentSession) currentSession.duration = Date.now() - recordingStartTime;
     dom.statusDot.classList.add('hidden');
     dom.timer.classList.add('hidden');
+    dom.stopBtn.classList.add('hidden');
     releaseWakeLock();
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
