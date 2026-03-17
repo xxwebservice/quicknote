@@ -69,6 +69,22 @@ header {
 
 .timer.hidden { display: none; }
 
+/* 完成按钮 — 在header右侧，小巧，不干扰输入 */
+.stop-header-btn {
+  padding: 6px 14px;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.stop-header-btn:active { background: var(--bg-secondary); }
+.stop-header-btn.hidden { display: none; }
+
 .icon-btn {
   background: none; border: none;
   font-size: 20px; color: var(--text-secondary);
@@ -251,24 +267,6 @@ header {
 .send-btn:disabled { background: var(--border); color: var(--text-muted); }
 .send-btn:not(:disabled):active { transform: scale(0.9); }
 
-/* === Bottom Bar === */
-.bottom-bar {
-  display: flex; justify-content: center;
-  padding: 12px 16px;
-  padding-bottom: calc(12px + var(--safe-bottom));
-  border-top: 1px solid var(--border);
-  background: var(--bg); flex-shrink: 0;
-}
-
-.stop-btn {
-  padding: 12px 40px;
-  background: var(--text); color: white; border: none;
-  border-radius: var(--radius);
-  font-size: 15px; font-weight: 500; cursor: pointer;
-  min-height: 48px;
-}
-
-.stop-btn:active { opacity: 0.8; }
 
 /* === Review Screen === */
 .review-container {
