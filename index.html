@@ -10,11 +10,10 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <div id="app">
-    <!-- Header -->
     <header id="header">
       <div class="header-left">
         <span class="app-title">QuickNote</span>
@@ -22,21 +21,19 @@
       </div>
       <div class="header-right">
         <span id="timer" class="timer hidden">00:00</span>
-        <!-- 完成按钮放在header右侧，远离输入区 -->
         <button id="stop-btn" class="stop-header-btn hidden">完成</button>
         <button id="menu-btn" class="icon-btn" aria-label="Menu">⋮</button>
       </div>
     </header>
 
-    <!-- Menu Dropdown -->
     <div id="menu-dropdown" class="menu-dropdown hidden">
       <button id="menu-export" class="menu-item">导出笔记</button>
       <button id="menu-history" class="menu-item">历史记录</button>
+      <button id="menu-exports" class="menu-item">已导出文件</button>
     </div>
 
-    <!-- Main Content -->
     <main id="main-content">
-      <!-- Start Screen -->
+      <!-- Start -->
       <div id="start-screen" class="screen active">
         <div class="start-container">
           <input type="text" id="meeting-title" class="meeting-title-input" placeholder="会议主题（可选）" autocomplete="off">
@@ -49,7 +46,7 @@
         </div>
       </div>
 
-      <!-- Recording/Notes Screen — 底部只有输入框+发送按钮，完成在顶部 -->
+      <!-- Notes -->
       <div id="notes-screen" class="screen">
         <div id="title-bar" class="title-bar">
           <span id="current-title" class="current-title"></span>
@@ -58,7 +55,6 @@
           <div id="notes-entries" class="notes-entries">
             <div id="empty-hint" class="empty-hint">在下方输入笔记要点，按发送或回车提交...</div>
           </div>
-          <!-- 底部只有输入区，无完成按钮 -->
           <div class="input-row">
             <div class="input-group">
               <textarea id="note-input" class="note-input" placeholder="记一条笔记..." rows="1"></textarea>
@@ -68,7 +64,7 @@
         </div>
       </div>
 
-      <!-- Review Screen -->
+      <!-- Review -->
       <div id="review-screen" class="screen">
         <div class="review-container">
           <h2 id="review-title" class="review-title"></h2>
@@ -79,25 +75,39 @@
           <div id="review-notes" class="review-notes"></div>
           <div class="review-actions">
             <button id="export-btn" class="action-btn primary">导出 ZIP</button>
+            <button id="share-btn" class="action-btn share">分享</button>
+          </div>
+          <div class="review-actions" style="margin-top:10px">
             <button id="new-btn" class="action-btn">新建记录</button>
           </div>
           <p class="export-hint">ZIP包含：录音 + 笔记 + Claude分析指引</p>
         </div>
       </div>
 
-      <!-- History Screen -->
+      <!-- History -->
       <div id="history-screen" class="screen">
-        <div class="history-container">
-          <div class="history-header">
-            <button id="back-btn" class="icon-btn">←</button>
-            <h2>历史记录</h2>
-          </div>
+        <div class="list-screen-header">
+          <button id="back-btn" class="icon-btn">←</button>
+          <h2>历史记录</h2>
+        </div>
+        <div class="list-screen-body">
           <div id="history-list" class="session-list"></div>
+        </div>
+      </div>
+
+      <!-- Exports -->
+      <div id="exports-screen" class="screen">
+        <div class="list-screen-header">
+          <button id="back-from-exports" class="icon-btn">←</button>
+          <h2>已导出文件</h2>
+        </div>
+        <div class="list-screen-body">
+          <div id="exports-list"></div>
         </div>
       </div>
     </main>
   </div>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
