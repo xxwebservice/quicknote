@@ -570,7 +570,13 @@
     });
   }
 
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  // Register SW only to clear old caches, then unregister
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      // After clearing caches, unregister so SW never intercepts again
+      setTimeout(() => reg.unregister(), 3000);
+    }).catch(() => {});
+  }
 
   init();
 })();
